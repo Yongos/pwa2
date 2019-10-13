@@ -1,4 +1,4 @@
-const images = ['img1','img2','img3','img4'];
+const images = ['fox1','fox2','fox3','fox4'];
 const imgElem = document.querySelector('img');
 
 function randomValueFromArray(array) {
@@ -15,7 +15,7 @@ setInterval(function() {
 
 if('serviceWorker' in navigator) {
   navigator.serviceWorker
-           .register('sw.js')
+           .register('/pwa-examples/a2hs/sw.js')
            .then(function() { console.log('Service Worker Registered'); });
 }
 
@@ -41,9 +41,9 @@ window.addEventListener('beforeinstallprompt', (e) => {
     // Wait for the user to respond to the prompt
     deferredPrompt.userChoice.then((choiceResult) => {
         if (choiceResult.outcome === 'accepted') {
-          console.log('User accepted');
+          console.log('User accepted the A2HS prompt');
         } else {
-          console.log('User dismissed');
+          console.log('User dismissed the A2HS prompt');
         }
         deferredPrompt = null;
       });
