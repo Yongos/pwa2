@@ -1,12 +1,9 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.0.0/workbox-sw.js");
 
 if (workbox) {
-    console.log("Yay! Workbox is loaded !");
+    console.log("ça marche !!");
     workbox.precaching.precacheAndRoute([]);
 
-    /*  cache images in the e.g others folder; edit to other folders you got
-   and config in the sw-config.js file
-    */
     workbox.routing.registerRoute(
         /(.*)others(.*)\.(?:png|gif|jpg)/,
         new workbox.strategies.CacheFirst({
@@ -19,20 +16,16 @@ if (workbox) {
             ]
         })
     );
-    /* Make your JS and CSS âš¡ fast by returning the assets from the cache,
-  while making sure they are updated in the background for the next use.
-  */
+
     workbox.routing.registerRoute(
-    // cache js, css, scc files
         /.*\.(?:css|js|scss|)/,
-        // use cache but update in the background ASAP
         new workbox.strategies.StaleWhileRevalidate({
             // use a custom cache name
             cacheName: "assets",
         })
     );
 
-    // cache google fonts
+
     workbox.routing.registerRoute(
         new RegExp("https://fonts.(?:googleapis|gstatic).com/(.*)"),
         new workbox.strategies.CacheFirst({
@@ -45,12 +38,9 @@ if (workbox) {
         })
     );
 
-    // add offline analytics
+
     workbox.googleAnalytics.initialize();
 
-    /* Install a new service worker and have it update
-and control a web page as soon as possible
-*/
 
     workbox.core.skipWaiting();
     workbox.core.clientsClaim();
